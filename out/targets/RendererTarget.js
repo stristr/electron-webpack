@@ -183,7 +183,7 @@ class RendererTarget extends BaseRendererTarget {
 
     const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-    const nodeModulePath = configurator.isProduction ? null : path.resolve(configurator.projectDir, "node_modules");
+    const nodeModulePath = configurator.isProduction ? null : path.resolve(require.resolve('electron'), '..', '..');
     configurator.plugins.push(new HtmlWebpackPlugin({
       filename: "index.html",
       template: (await (0, _util().statOrNull)(customTemplateFile)) == null ? await generateIndexFile(configurator, nodeModulePath) : customTemplateFile,
